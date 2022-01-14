@@ -44,6 +44,8 @@ rm <name>  : 파일 지우기
 
 rm -r <name> : 폴더 지우기
 
+rm -rf <name> : 보호를 받든 암튼 지워
+
 
 
 ## Git 생성과 Commit
@@ -96,6 +98,15 @@ __-u__ : remote repo 등록한 다음에만 쓴다. set upstream
 
 
 
+## push 전에는 pull이 있다
+
+협업 중 conflict 일어날 수 있다 : 자연스러운 상황 (ex) 둘다 첫 줄을 동시에 수정했다)
+
+- 깃이 >>> <<< 이런 충돌 기호를 만들어준다.
+- 개발자가 이를 보고 정상적인 작업의 상태로 직접 수정한다. > add > commit > push
+
+
+
 
 
 # TIL : Today I Learned
@@ -106,3 +117,41 @@ __-u__ : remote repo 등록한 다음에만 쓴다. set upstream
 - 신입 개발자에게 요구되는 가장 큰 능력, ___꾸준히 학습 가능?___
 - Github 관리의 가장 첫 걸음, 제일 중요한 __장기프로젝트__
 - 1일 1커밋 해보즈아!!
+
+
+
+
+
+# 22-01-14 : Git 복습
+
+- Repository : 커밋이저장되는 곳
+
+`git init` : 로컬 repository 생성
+
+- .git 이라는 폴더가 생성되고, git이 관리
+
+`git status` : 현재 repository에 git이 어떤 상태인가 체크
+
+README.md : 내 repository에 대한 설명서 같은 역할을 하는 파일
+
+`git add`
+
+- Staging Area로 올리는 역할
+- git에게 추적하는 파일을 선언
+
+`git remote <origin> <주소>` 
+
+`git push -u <origin> <master>` 
+
+
+
+public : 볼 수 있고, 다운(clone) 받을 수 있고, push는 나만
+
+private : X. X. O
+
+
+
+repo안에 repo를 만드는 구조를 하면 안된다.
+
+`git push (origin main)` 
+
