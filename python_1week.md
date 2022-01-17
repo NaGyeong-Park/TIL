@@ -1,7 +1,5 @@
 # Python 
 
-## Confidential
-
 프로그래밍 : 일종의 명령어 모음
 
 컴퓨터 프로그래밍 : 컴퓨터에게 명령시키기 위한 약속
@@ -183,7 +181,42 @@
 - 패키지 : 프로그램  + 모듈
 - 라이브러리
 
-# Jupyter notebook 쓰는 이유
+
+
+#### Jupyter notebook 쓰는 이유
 
 - 복습할 때 기록을 보려고 : 코드 - 결과 
 -  md 가능(vs cord + notion 같당)
+
+#### 패킹/언패킹 연산자
+
+- 시퀀스 : __순서__가 있는 자료형 : 패킹/언패킹 연산자*를 사용해 패킹 언패킹 가능
+- iterable : __순회__가능한 자료형
+- *곱셈인지 패킹/언패킹인지 구분하기
+
+
+
+
+
+## 제어문
+
+- 순서도(flow chart) 표현 가능
+
+## 조건문
+
+- 기본
+- 복수 조건문 : if / elif / else
+- 조건 표현식
+
+## 반복문
+
+### While문
+
+_꿀팁_ : [python Tutor](https://pythontutor.com/visualize.html#mode=display) : 실행되는 코드 하나하나 보여주는 사이트
+
+### for 문
+
+- 딕셔너리 : key를 순회, key를 통해 값을 활용 : 인덱스가 없다!
+- enumerate() : 인덱스와 객체가 쌍으로 담은 열거형(enumerate) 객체 반환
+  - (index, value) 형태 tuple로 구성된 열거 객체 반환
+  - ex ) `list(enumerate( a, start = 1))` : [ (1, '나경') ,  (2, '엄마')]

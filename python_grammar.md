@@ -54,3 +54,52 @@ Upload when I learn new things
 - 요소 끄집어내기 : `pop()`: ex) a.pop() : 맨 마지막 요소 꺼내주고 리스트에서 요소 삭제 / `pop(x)`는 x번째 요소 돌려주고 그 요소 삭제
 - 리스트에 포함된 요소 x의 개수 세기 :`count(x)`: 리스트 안에 x 개수를 조사해서 돌려줌
 - 확장 : `extend(x)`: a 리스트에 x 리스트 더함, x에는 리스트만 올 수 있음! : ex) a.extend([3,4]) => a = [1,2,3,4] : `a.extend([x,y]) 와 같은 a += [x,y]`
+
+
+
+## 2022.01.17
+
+### 1. 반복문 없이 사각형 만들기
+
+- easy..
+- 파이썬은 +로 문자열을 더 할 수 있는 점 까먹지말자!
+
+```python
+n = 5
+m = 5
+
+print(("*"*n + "\n")*m)
+```
+
+### 2.  python tutor
+
+ [python Tutor](https://pythontutor.com/visualize.html#mode=display) : 실행되는 코드 하나하나 보여주는 사이트, 코드 실행이 어떻게 되는지 생각해볼때 유용
+
+
+
+### 3. 파이썬은 실수에서 오차가 나올 수 있다!
+
+그래서 비교를 해줘야 하는데... 3가지 방법이 있다!
+
+
+
+매우 작은 수보다 작은지 확인
+
+``` python
+abs(a - b) <= 1e-10
+```
+
+epslion 사용
+
+```python
+import sys
+print(abs(a-b) <= sys.float_info.epsilon)
+```
+
+math 함수 이용(python 3.5 이상부터 가능)
+
+```python
+import math
+math.isclose(a, b)
+```
+
