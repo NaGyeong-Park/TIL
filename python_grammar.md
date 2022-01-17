@@ -11,7 +11,10 @@ Upload when I learn new things
 - 파이썬에서는 여러줄로 이루어진 문자열을 입력받기 위해선 각 줄마다 input이 필요하다.
 - 한 줄에 여러 데이터를 입력받고 싶으면 split 함수를 이용한다.
 - split(unknown) 구분시 unknown을 기준으로 구분한다. 없다면 공백 기준
-- ex) `a, b = input().split()`
+- ex) `a, b = input().split()` 
+  - 입력 : 1 2
+  - 처리과정 : 리스트 형태의 [1,2] => 나눠서 a에 1, b에 2 할당
+
 
 
 
