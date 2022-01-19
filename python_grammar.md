@@ -103,3 +103,14 @@ import math
 math.isclose(a, b)
 ```
 
+
+
+## 2022.01.19
+
+```python
+import random
+
+random.randint(0, 1)
+```
+
+random으로 0 아니면 1을 보여줌
