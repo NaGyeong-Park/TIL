@@ -19,3 +19,42 @@
 
 - parameter : 매개변수, 인수 : 정의 할 때
 - Argument : 전달인자, 인자 : 호출 할 때
+
+
+
+
+
+# 모듈
+
+## 모듈과 패키지
+
+- 코드 < 함수 < 모듈 < 패키지 < 라이브러리
+
+### 모듈과 패키지 불러오기
+
+- import module, from module import *, from module import var, function, Class
+- from package import module
+
+### 파이썬 패키지 관리자(pip)
+
+- PyPI(Python Package Index)에 저장된 외부 패키지들을 설치하도록 도와주는 패키지 관리 시스템(시험X)
+
+
+
+__for문 안에서 안쓰면 _처리(i)
+
+```python
+def test(a : list) -> int
+```
+
+list형을 int로 return 해준다고 말해줌
+
+JSON : Data를 표현하는 방법 중 하나, key와 value로 이루어짐
+
+```python 
+import json
+with file_stream = open('data/data.json', 'r', encording = 'UTF-8' as file_stream:
+```
+
+- r : 읽기 / a : 수정
+
