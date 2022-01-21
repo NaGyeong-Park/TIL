@@ -114,3 +114,21 @@ random.randint(0, 1)
 ```
 
 random으로 0 아니면 1을 보여줌
+
+
+
+## 2022.01.21
+
+1.  __get은 (key) or (key, key값이 없으면 대신 가져오는 디폴트값) 함수__
+
+- 여러개의 key를 입력받을 수 없다
+
+2. json 파일 읽어오기
+
+```python
+ path = f'data/movies/{id}.json'
+        with open(path, 'rt', encoding='UTF8') as open_mov :
+            json_data = json.load(open_mov)
+```
+
+- path  값을 여러개로 바꾸고 싶다면 문자열로 저렇게 하면 된다..!(응용한 나 칭찬해)
