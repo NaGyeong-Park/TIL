@@ -147,3 +147,51 @@ random으로 0 아니면 1을 보여줌
 2. 문자열 안에서 변수이름 넣기 새로운 방식
 
 - `'f.'abcde{변수이름}'` : 출력 `abcde(변수값)`
+
+3. `TypeError: 함수() missing 1 required positional argument: '함수 2번째 변수'`
+
+- 에러에도 친절히 써놨지만.. 2개를 입력해야하는데 1개의 요소만 입력해 나타난 에러
+
+4. 재귀함수 예제들
+
+- 팩토리얼
+- 제곱근 계산기
+
+```python
+def jagop(num, ja) :
+    if ja == 0:
+        return 1
+    elif ja > 1:
+        return num*jagop(num,ja-1)
+    else :
+        return num
+
+
+print(jagop(2,8))
+```
+
+- 피보나치
+  - 0 / 1 / 1 / 1 + 1/ 2 +1 / 3 + 2 / 5 + 3 
+  - 중복이 많아 재귀로 푸는건 비효율적
+
+```python
+def pivo(num) :
+    if num > 1:
+        return pivo(num-1) + pivo(num-2)
+    else :
+        return num
+
+print(pivo(숫자))
+```
+
+- while문으로 푼 문제
+
+```python
+def pivo(num) :
+    while num > 1 :
+        return pivo(num-1) + pivo(num-2)
+    return num
+
+print(pivo(숫자))
+```
+
