@@ -137,3 +137,13 @@ random으로 0 아니면 1을 보여줌
 
 - recursive : 함수에서 안에서 함수를 호출해줬기 때문에 안의 함수값을 return 해줘야 한다.
 
+## 2022.01.23
+
+1. json 파일 읽기
+
+- `open(path, encoding = 'UTF8') `: 열기
+- `with open(path, encoding = 'UTF8')` : 열기와 동시에 닫기
+
+2. 문자열 안에서 변수이름 넣기 새로운 방식
+
+- `'f.'abcde{변수이름}'` : 출력 `abcde(변수값)`
