@@ -195,3 +195,29 @@ def pivo(num) :
 print(pivo(숫자))
 ```
 
+
+
+## 2022.01.25
+
+1. `copy.deepcopy`
+
+- [깊은복사, 얕은복사](https://blockdmask.tistory.com/576) : 슬라이싱이 깊은 복사로보이지만, 사실 내부적으로는 얕은 복사였다...!
+- 얕은복사 : '=', [:], copy모듈의 copy 또한 얕은 복사
+- 깊은복사 : copy.deepcopy
+
+2. 같은 내용의 여러 변수 만들기
+
+- ```python
+  for i in range(n):
+      globals()[f'var_{i}'] = 0
+  ```
+
+- locals()함수는 현재 local변수들을 딕셔너리 형태로 return
+
+- globals()함수는 현재 globals변수들을 딕셔너리 형태로 return
+
+3. 타입 에러 : 메소드 에러
+
+-TypeError: can only concatenate str (not "builtin_function_or_method") to str
+
+- word.upper은 method => word.upper() 사용시 string으로 불러올 수 있다.
