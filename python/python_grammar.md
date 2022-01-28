@@ -221,3 +221,21 @@ print(pivo(숫자))
 -TypeError: can only concatenate str (not "builtin_function_or_method") to str
 
 - word.upper은 method => word.upper() 사용시 string으로 불러올 수 있다.
+
+
+
+## 2022.01.28
+
+1. list(), []의 차이
+
+- list()와 []는 차이가 없지만
+- `list(map(int, input().split()))` 와 `[map(int, input().split())]`는 차이난다.
+- map은 map object로 반환해주기때문 !
+
+2. 파이썬다운 비어있는 리스트 확인법
+
+- NO 권장 : 파이썬답지 않다!
+  - `if len(lst) == 0 :`
+- 권장 : 
+  - `if not lst :`
+
