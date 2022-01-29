@@ -231,6 +231,9 @@ print(pivo(숫자))
 - list()와 []는 차이가 없지만
 - `list(map(int, input().split()))` 와 `[map(int, input().split())]`는 차이난다.
 - map은 map object로 반환해주기때문 !
+- 둘중에 성능은 대괄호 방식이 더 좋다
+  - list() 방식은 C언어 작성 스타일 / []가 파이썬다운 스타일
+
 
 2. 파이썬다운 비어있는 리스트 확인법
 
