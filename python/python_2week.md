@@ -58,3 +58,4 @@ with file_stream = open('data/data.json', 'r', encording = 'UTF-8' as file_strea
 
 - r : 읽기 / a : 수정
 
+- - 
