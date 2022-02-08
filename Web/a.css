@@ -1,0 +1,26 @@
+.box {
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  background-color: aqua;
+  float:left;
+  text-align: center;
+  line-height:100px;
+}
+
+.content{
+  background-color: bisque;
+  height: 100px;
+  clear: left;
+  margin: 20px;
+  text-align: center;
+  line-height: 100px;
+}
+
+#box5 {
+  clear: left;
+}
+
+#box9{
+  clear: left;
+}
