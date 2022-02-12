@@ -244,9 +244,4 @@
 
 - techniques : Display, Position, Float, Flexbox, Grid
 
-## Float
-
-- 박스를 왼쪽 혹은 오른쪽으로 이동시켜 텍스트를 포함 인라인요소들이 주변을 wrapping 하도록 함
-- 요소가 Normal flow를 벗어나도록 함
-- 속성
-  - none : 기본 / left / right
+## Flexbox
