@@ -245,3 +245,32 @@
 - techniques : Display, Position, Float, Flexbox, Grid
 
 ## Flexbox
+
+- 축
+  - main axis(메인 축)
+  - cross axis(교차 축)
+- 구성요소
+  - Flex Container(부모 요소)
+    - flexbox 레이아웃을 형성하는 가장 기본적인 모델
+    - flex item들이 놓여있는 영역
+    - display 속성을 flex 혹은 inline-flex로 지정
+    - .flex-container{ display : flex }
+  - Flex ltem(자식 요소)
+    - 컨테이너에 속해 있는 컨텐츠(박스)
+
+- 축 : flex-direction : row
+
+
+
+### Flex 속성
+
+- 배치 설정
+  - flex-direction
+    - row / row-reverse / 
+  - flex-wrap
+- 공간 나누기
+  - justify-content (main axis)
+  - align-content (cross axis)
+- 정렬
+  - align-items (모든 아이템을 cross axis 기준으로)
+  - align-self (개별 아이템)
