@@ -265,12 +265,61 @@
 ### Flex 속성
 
 - 배치 설정
-  - flex-direction
-    - row / row-reverse / 
+  - flex-direction : main axis의 방향 설정
+    - row / row-reverse / colume / column-reverse
   - flex-wrap
+    - 아이템이 컨테이너 벗어나면 해당 영역 내에 배치되도록 설정
+    - nowrap : 한줄 / wrap : 넘치면 그 다음줄
+  - flex-flow : direc+wrap
+    - flex-flow : row nowrap;
 - 공간 나누기
   - justify-content (main axis)
+    - main axis 기준 배분 : flex-start, flex-end, center, space-between(아이템 사이 간격), space-around(아이템 둘러싼 영역), space-evenly(전체 영역에서 아이템 간 간격)
   - align-content (cross axis)
+    - cross axis 기준 배분 (아이템 한 줄 배치시 확인X) : flex-start, flex-end, center , space-between, space-around, space-evenly
 - 정렬
-  - align-items (모든 아이템을 cross axis 기준으로)
-  - align-self (개별 아이템)
+  - align-items (모든 아이템을 cross axis 기준으로) : stretch, flex-start, flex-end, center, baseline
+  - align-self (개별 아이템) : 콘테이너 X __개별아이템 적용__ : stretch, flex-start, flex-end, center
+- flex-grow : 남은 영역 아이템에 분배 
+- order : 배치 순서
+
+
+
+### 수직 수평 가운데 정렬
+
+display : flex / justify-content : center; / align-items: center;
+
+.container : flex; .item : margin: auto
+
+
+
+# Bootstrap
+
+## spacing
+
+![image-20220213162015202](Web_exam.assets/image-20220213162015202.png)
+
+![image-20220213162107711](Web_exam.assets/image-20220213162107711.png)
+
+![image-20220213162125390](Web_exam.assets/image-20220213162125390.png![image-20220213162143409](Web_exam.assets/image-20220213162143409.png)
+
+- mx-auto : 가운데 정렬
+- ms-auto : 오른쪽 정렬
+- text : text-start / text-enter / text-end / text-decoration-none / fw-bold / fw-noraml / fw-light / fst-italic
+- Display : d-inline bg-primary text-white / d-block bg-primary text-white / box d-sm-none d-md-block
+- fixed-top / fixed-bottom
+- __flex__ : d-flex justify-content-start / align-items start
+
+## Grid system
+
+- 요소들의 디자인과 배치에 도움을 주는 시스템
+- 기본요소
+  - column : 실제 컨텐츠 포함 부분
+  - Gutter : 칼럼과 칼럼 사이 공간(간격)
+  - Container : Column들을 담고 있는 공간
+- __반드시 암기 2개__
+  - 12개의 column
+  - 6개의 gird breakpoints
+- breakpoints 
+  - xs 576px 미만/  sm 576 이상/ md 768 이상 / lg 992 이상/  xl 1200 이상 /  xxl 1400 이상 
+- 이미지 : class="img-fluid"
