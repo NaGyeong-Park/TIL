@@ -1,0 +1,36 @@
+###Flex-grow 이해하기
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#main {
+  width: 600px;
+  height: 100px;
+  border: 1px solid #c3c3c3;
+  display: flex;
+}
+
+#main div:nth-of-type(1) {flex-grow: 1;}
+#main div:nth-of-type(2) {flex-grow: 2;}
+#main div:nth-of-type(3) {flex-grow: 3;}
+#main div:nth-of-type(4) {flex-grow: 4;}
+#main div:nth-of-type(5) {flex-grow: 0;}
+</style>
+</head>
+<body>
+
+<h1>The flex-grow Property</h1>
+
+<div id="main">
+  <div style="background-color:coral; width:100px;"></div>
+  <div style="background-color:lightblue; width:50px;"></div>
+  <div style="background-color:khaki; width:30px;"></div>
+  <div style="background-color:pink; width:70px;"></div>
+  <div style="background-color:lightgrey; width:50px;"></div>
+</div>
+
+<p><b>Note:</b> Internet Explorer 10 and earlier versions do not support the flex-grow property.</p>
+
+</body>
+</html>

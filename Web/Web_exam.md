@@ -9,7 +9,7 @@
 
 
 
-## HTML 기본 구조
+## HTML 기본 구조(나옴)
 
 ```html
 <!DOCTYPE html>
@@ -36,7 +36,7 @@
 - body : 문서 본문 요소
   - 실제 화면 구성과 관련된 내용
 
-### DOM 트리
+### DOM 트리(나옴)
 
 - Document Object Model
 - 텍스트 파일인 HTML 문서를 브라우저에 렌더링 하기 위한 구조
@@ -66,7 +66,7 @@
   - title : 요소에 대한 추가 정보 지정
   - tabindex : 요소의 탭 순서
 
-### 시맨틱 태그
+### 시맨틱 태그(나옴)
 
 - HTML5에서 의미론적 요소를 담은 태그 등장
   - 기존 영역을 의미하는 div 태그를 대체해 사용
@@ -84,21 +84,21 @@
 - 요소의 의미가 명확해짐 : 가독성 높이고 유지보수 쉽게 함
 - 검색엔진최적화 위해 메타태그, 시맨틱 태그 등을 통한 마크업을 효과적으로 활용 해야함
 
-### table
+### table(안나옴)
 
 - `<thead>` (tr>th)`<tbody>`(tr>td) `<tfoot>`(tr>td) 
 - `<tr>` 가로줄 / `<th> <td>`로 셀 구성
 - `colspan, rowspan` 속성을 활용해 셀 병합
 - `<caption>` 표 설명 또는 제목
 
-### form
+### form(안나옴)
 
 - 정보(데이터)를 서버에 제출하기 위한 영역
   - action : form을 처리할 서버의 URL
   - method : form을 제출할 때 사용할 HTTP 메서드(GET or POST)
   - enctype : method가 post인 경우 데이터의 유형
 
-### input
+### input(안나옴)
 
 - name : form control에 적용되는 이름
 - value : form control에 적용되는 값 
@@ -153,14 +153,18 @@
 2. 우선순위 : 인라인 > id > class, 속성, pseudo-class > 요소, pseudo-element
 3. CSS 파일 로딩 순서
 
-### CSS 상속
+### CSS 상속(나옴)
 
 - 상속을 통해 부모 요소의 속성을 자식에게 상속
   - 속성(property) 중에는 상속이 되는 것과 되지 않는 것들이 있다.
   - 상속O : text관련 요소, opacity, visibility 등
   - 상속X : Box model 관련 요소 / position 관련 요소
+  - 
+    - 상속되는속성 : text(font, color, text-align), opacity, visibility 등
+    - 상속안되는속성 : boxmodel(width, height, margin, padding, border, display 등)
+    - position 관련속성(position, top/right/bottom/left, z-index 등)도 상속안됨
 
-### 크기 단위
+### 크기 단위(나옴)
 
 - px
 - %
@@ -168,7 +172,7 @@
 - rem : (바로  위, 부모 요소에 대한) 상속의 영향 안받음 / 최상위 요소(html)의 사이즈 기준으로 배수 단위
 - viewport : vw,vh,vmin,vmax
 
-### 색상 단위
+### 색상 단위(나옴)
 
 - 색상 키워드 : 대소문자 구별X
 - RGB `# + 16진수 표기` or `rgb(0,0,0)`/ HSL `hsl(0,0%,0) / a는 투명도
@@ -179,7 +183,7 @@
 
 ## Selectors 심화
 
-### 결합자
+### 결합자(중요, 나옴)
 
 - 자손 : selectorA 하위 모든 selectorB 요소
 - 자식 : selectorA 바로 아래 selectorB 요소
@@ -190,7 +194,7 @@
 
 
 
-## Box model
+## Box model(나옴)
 
 - ___모든 요소는 네모(박스모델)이고, 위에서부터 아래로, 왼쪽에서 오른쪽으로 쌓인다.___ : __Normal flow__
 - 하나의 박스는 네 부분(영역) : content, paddig, border, margin
@@ -200,7 +204,7 @@
 
 
 
-## CCS Display
+## CCS Display(나옴,인라인 블록 특징)
 
 - ___모든 요소는 네모이고, 좌측상단에 배치 / display에 따라 크기와 배치가 달라진다___
 - `display : block` : 줄바꿈 일어나는 요소, 화면 크기 전체의 가로 폭 차지, 블렉 레벨 요소 안에 인라인 레벨 요소 들어갈 수 있다
@@ -215,7 +219,7 @@
 
 
 
-## CSS Position
+## CSS Position(나옴)
 
 - 문서상 요소 위치 지정
 - `static` : 모든 태그의 기준 값
@@ -224,10 +228,10 @@
   - relative : 상대 위치
     - 자기 자신 static 위치 기준 이동 (normal flow 유지)
     - 레이아웃에서 요소가 차지하는 공간은 static일 때와 같음(normal position 대비 offset)
-  - absolute : 절대 위치
+  - absolute : 절대 위치(Out of flow)
     - 요소를 일반적인 문서 흐름에서 제거 후 레이아웃에 공간 안차지함 (normal flow에서 벗어남)
     - static이 아닌 가장 가까이 있는 부모/조상 요소 기준으로 이동(없으면 body)
-  - fixed : 고정 위치
+  - fixed : 고정 위치(out of flow)
     - 요소를 일반적인 문서 흐름에서 제거 후 레이아웃에 공간 안차지(normal flow에서 벗어남)
     - 부모 요소와 관계없이 viewport를 기준으로 이동
       - 스크롤해도 같은 위치
@@ -280,7 +284,7 @@
 - 정렬
   - align-items (모든 아이템을 cross axis 기준으로) : stretch, flex-start, flex-end, center, baseline
   - align-self (개별 아이템) : 콘테이너 X __개별아이템 적용__ : stretch, flex-start, flex-end, center
-- flex-grow : 남은 영역 아이템에 분배 
+- flex-grow : 남은 영역 아이템에 분배 (나옴)
 - order : 배치 순서
 
 
