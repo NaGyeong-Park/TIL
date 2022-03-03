@@ -1,0 +1,8 @@
+{% include 'base.html' %}
+
+
+{% block content %}
+<h1>Catch</h1>
+<h2>여기서 {{message}} 를 받았어!</h2>
+<a href="{% url 'throw'%}">Throw로 이동하기</a>
+{% endblock content %}

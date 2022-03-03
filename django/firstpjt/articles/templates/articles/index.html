@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Hello :) </h1>
+
+  <a href='{% url 'articles:greeting' %}'>greeting</a>
+  <a href='{% url 'articles:dinner' %}'>dinner</a>
+  <a href='{% url 'articles:throw' %}'>Throw</a>
+
+  <a href='{% url 'index' %}'>Pages Index</a>
+
+
+{% endblock content %}

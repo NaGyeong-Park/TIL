@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+  <p>안녕하세요, 저는 {{info.name}}입니다.</p>
+  <p>냠냠 음식은 {{foods}}입니다.</p>
+  <p>젤 좋아하는건 {{foods.0}}</p>
+  <a href = '{% url articles:index %}' >뒤로</a>
+
+{% endblock content %}
