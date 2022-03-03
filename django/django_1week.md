@@ -14,6 +14,7 @@
 ## Django 이용방법
 
 - python -m venv venv > source venv/Scripts/activate > pip install django==3.2.10 > django-admin startproject firstpjt . >  python manage.py runserver
+- app 만들기 : python manage.py startapp APPname
   - 서버 종료시 `Ctrl + C`
   - . 입력이유 : 여기에 만들어조 ~~
 - 3.2.10이 LTS(Long Term Support) 버전
@@ -98,3 +99,70 @@
 - `{%block content%} {%endblock%}`
   - 하위 템플릿에서 재지정할 수 있는 블록 정의
   - 즉, 하위 템플릿이 채울 수 있는 공간
+
+
+
+
+
+## HTML Form
+
+#### HTML 'form' element
+
+- 웹에서 사용자 정보를 입려가는 여러방식 제공하고 사용자로부터 할당된 데이터 서버로 전송하는 역할
+- 핵심속성
+  - action : 입력 데이터가 전송될 URL 지정
+  - method : 입력 데이터 전달 방식 지정
+
+#### HTML 'input' element
+
+- 사용자로부터 데이터 입력 받기 위해 사용
+- type 속성에 따라 동작 방식이 달라짐
+- 핵심속성
+  - name : 중복가능, 주요 용도는 GET/POST 방식으로 전달되는 파라미터로 매핑하는 것
+  - GET 방식에서는 URL에서 ?key=value&key=value 형식으로 데이터 전달
+
+#### HTML 'label' element
+
+- 사용자 인터페이스 항목에 대한 설명
+- label을 input과 연결 : 
+  - input에 id 속성 부여
+  - laber에는 input id와 동일한 값의 for 속성이 필요
+
+#### HTML 'for' attribute
+
+- for 속성의 값과 일치하는 id를 가진 문서의 첫 번째 요소를 제어
+  - 연결 된 요소가 labelabel elements인 경우 이 요소에 대한 labeled control이 됨
+- 'labelable elements'
+  - 연결 가능 요소 : button, input, select, textarea...
+
+#### HTML 'id' attribute
+
+
+
+#### HTTP
+
+- HyperText Transfer Protocol
+- 알고리즘 코테 통과하면 면접때 마니 나옴 : 네트워크 책 읽기!
+- HTTP request method 종류
+  - GET, POST, PUT, DELETE
+
+## URL
+
+#### Variable Routing
+
+- URL 주소를 변수로 사용
+- 변수 값에 따라 하나의 path()에 여러 페이지 연결가능
+- 예시
+  - path('accounts/user/<int:user_pk>/'...)
+
+#### URL Path converters
+
+- str : default
+  - '/'를 제외하고 비어있지 않은 모든 문자열과 배치
+- int
+- slug : ASCII 문자 또는 숫자, 하이픈 및 밑줄 문자로 구성된
+  - ex)'building-your-1st-django-site'
+
+```
+$ python manage.py runserver
+```
