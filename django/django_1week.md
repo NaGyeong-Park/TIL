@@ -166,3 +166,9 @@
 ```
 $ python manage.py runserver
 ```
+
+
+
+#### 2022-03-04 pjt 후 공부해야 할 것들
+
+- views.py로 다른 파이썬 파일을 어떻게 끌어오는지
