@@ -13,3 +13,6 @@ sqlite> .tables
 sqlite> SELECT * FROM examples; # ;까지 하나의 명령 (SQL Query)로 간주
 ```
 
+```
+GIT_AUTHOR_DATE=2022-03-14T12:00:00 GIT_COMMITTER_DATE=2022-03-14T12:00:00 git commit -m "django"
+```
