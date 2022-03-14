@@ -156,6 +156,13 @@ Bypass password validation and create user anyway? [y/N]: y
 Superuser created successfully.
 ```
 
+```python
+# admin py
+from .models import Article
+
+admin.site.register(Article)
+```
+
 
 
 #### HTTP method
@@ -164,3 +171,11 @@ Superuser created successfully.
 - POST : 리소스를 생성, 수정, 삭제 : __CUD__ : Body 안쪽에 숨겨서 보낸다
 
 하다보니까,,.. 제출을 안해도 링크를 조작하니까 서버에 계속 보내지고 저장도 된다! > 방지하고싶은데? > CSRF Token을 만들어서 방지를 한다.
+
+
+
+# 2022.03.10
+
+- TIME_ZONE : DB에 저장될 때는 항상 UTC형태로 저장되나, 꺼냈을 때 우리에게 보여줄 때 Asia/Seoul 
+-  delete : POST로 받을 때와, GET으로 받을 때 경우를 views에서 구분시켜줘야한다.
+- !항상! save()로 DB의 변경사항을 저장해야됨.
