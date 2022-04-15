@@ -258,3 +258,7 @@ def my_view(request):
 #### "next" query string parameter
 
 로그인이 정상적으로 진행되면 기존에 요청했던 주소로 redirect하기 위해 주소를 keep해주는 것! 별도 처리 안해주면 우리가 view에 설정한 redirect 경로로 이동
+
+
+
+request.get.방식의 쿼리스트링 ->
