@@ -97,3 +97,9 @@ REST(표현적인 상태 이전) API => RESTful Service
 
 1. URL은 리소스를 나타내기 위해서만 사용하고, 리소스에 대한 처리는 메서드로 표현
 2. Document는 단수명사로, Collection은 복수 명사로 표현
+
+
+
+#### GET과 POST의 차이
+
+csrf_token / url query string
