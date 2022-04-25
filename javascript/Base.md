@@ -1,0 +1,1 @@
+`consol.log(~~)` : python의 print 같은 것
