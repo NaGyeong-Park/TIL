@@ -52,14 +52,14 @@ console.log(twoArgs(...myArr,4))
 // 호이스팅 : 함수 선언식 O / 함수 표현식 X
 consol.log(testFunc())
 
-var testFunc = functionfunction(arg1, arg2,arg3,arg4){
+var testFunc = function(arg1, arg2,arg3,arg4){
   return arg + arg2 + arg3 + arg4
 }
 
 var testFunc
 consol.log(testFunc())
 
-testFunc = functionfunction(arg1, arg2,arg3,arg4){
+testFunc = function(arg1, arg2,arg3,arg4){
   return arg + arg2 + arg3 + arg4
 }
 
@@ -301,7 +301,108 @@ const me = {
     // 어떠한 객체 안에있는 메소드에서 사용하는 this는 객체(me)를 의미
   }
 }
-
 console.log(me.firstName);
 console.log(me['firstName']);
 console.log(me.getFullName());
+
+
+// ES6부터 어떻게 쓸까?
+const books = ['asb1', 'asd2']
+const magazines = ['asf3', 'afdsf4']
+
+// 전
+const bookStore_before = {
+  books : books,
+  magazines : magazines,
+}
+console.log(bookStore_before);
+
+// 후 : 속성명 축약
+const bookStore_after = {
+  books,
+   magazines,
+
+   // 전
+   greeting1 : function {
+    console.log('hola');
+  },
+  // 후 : 메서드 명 축약
+  greeting2() {
+    console.log('hola');
+  }
+}
+console.log(bookStore_after);
+bookStore_after.greeting2()
+
+
+
+// 구조 분해 할당
+
+const me = {
+  firstName : 'July',
+  lastName : 'Park',
+  age : 30,
+}
+// 이거 귀찮잖아!
+const firstName =  me.firstName
+const lasttName =  me.lastName
+const age =  me.age
+
+// 이렇게 줄여야지
+const {firstName} =  me
+const {lasttName} =  me
+const {age} =  me
+
+// 이것도 귀찮은데...
+const {firstName, lastName, age} = me
+
+// 응용!
+function getUserInfo({firstName, age}) {
+  console.log(`name : ${firstName}`);
+  console.log(`age : ${age}`);
+}
+getUserInfo(me)
+
+// Spread opreator
+const obj = {b:2, c:3, d:4}
+const newObj = {a:1, ...obj, e:5}
+console.log(newObj)
+
+// 참고 : 배열은 객체다!
+
+// this 정리
+
+// this : window
+function getFullName(){
+  return this.firstName + this.lastName
+}
+
+// this : me
+const me = {
+  firstName : 'july',
+  lastName : 'kim',
+  getFullName : getFullName,
+}
+// this : you
+const you = {
+  firstName : 'love',
+  lastName : 'park',
+  getFullName : getFullName,
+}
+
+me.getFullName() // julykim
+you.getFullName() // lovepark
+getFullName() // NaN
+
+const myArr = [1,2,3,4,5, [6,7,8]]
+console.log(_.sample(myArr));
+console.log(_.sampleSize(myArr));
+console.log(_.reverse(myArr)); // 원본도 변경 됨
+const myRange = _.range(10)
+console.log(myRange); // (s, e, step) 똑같다!
+// 깊은 복사 test
+const copyArr = _.cloneDeep(myArr)
+// 원본 배열 변경
+myArr[5][1] = 9999
+console.log(myArr);
+console.log(copyArr); // 참조type도 알아서 deepcopy를 해주는 메소드!
