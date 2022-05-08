@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p>{{msg}}</p>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const vm = new Vue({
+    el: '#app', // element : vue에서 이미 정의해놓은 속성 : 항상 el이라고 써야함
+    data : {
+      msg: 'Hello'
+    } // 상태data : data는 상태를 가지고, 그 상태가 바뀌는 걸 보고 vue가 조작을 해줌
+  })
+</script>
+</body>
+</html>
