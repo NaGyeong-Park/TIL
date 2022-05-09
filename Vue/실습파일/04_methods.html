@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="myBtn">click me</button>
+  <h3 id="myElem">0</h3>
+  <script>
+    // CODE HERE
+    const button = document.querySelector('#myBtn')
+    const elem = document.querySelector('#myElem')
+    let num = parseInt(myElem.innerText)
+
+    button.addEventListener('click', (e)=> {
+      console.log('Hello');
+      num += 1
+      elem.innerText = num
+    })
+  </script>
+</body>
+</html>
