@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <button id="myBtn" v-on:click="plusNum">click me</button>
+    <h3 id="myElem">{{myNum}}</h3>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const vm = new Vue({ // Vue는 선언식 데이터
+    el: '#app',
+    data: {
+      myNum: 0
+    },
+    methods: {
+      plusNum: function(){ 
+       // 일반적으로, 객체안에 있는 method가 this를 쓰면 그 객체를 가리킨다
+       //arrow function을 스면, 하나 상위의 객체를 가리킨다.
+       // vue는 myNum과 plusNum으로 가지고 있음
+       this.myNum += 1
+    }}
+  })
+</script>
+</body>
+</html>
