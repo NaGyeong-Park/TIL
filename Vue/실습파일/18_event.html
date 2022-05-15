@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- <my-header @:하위 컴포넌트의 이벤트 명="상위 컴포넌트의 메서드명"></my-header> -->
+    <my-header @here="numberEvent"></my-header>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  // props는 물어보지않고 데이터를 보내줌
+
+  // event는
+  // 1. 언제 데이터(이벤트)를 보낼건지 트리거
+  // 2. 트리거를 상위 컴포넌트가 받아줘야함
+  const myHeader = {
+    template : '<button @click="myEvent">click</button>',
+    methods : {
+      myEvent(){
+        //thus,$emit('이벤트 이름','파라미터들')
+        this.$emit('here', 10)
+      }
+  }}
+
+  new Vue({
+      el: '#app',
+      components : {
+        'my-header' : myHeader
+      },
+      methods: {
+        numberEvent(value){
+          console.log(value);
+        }
+      }
+    })
+</script>
+</body>
+</html>

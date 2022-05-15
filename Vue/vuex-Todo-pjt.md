@@ -65,6 +65,37 @@ export default new Vuex.Store({
 
 
 
+### 참고 : vue와 vuex의 차이점
+
+```js
+//vue way
+data: {
+  msg: 'hello'
+}
+
+//vuex way
+state: {
+  msg: 'hello'
+}
+
+// use
+<p>{{msg}}</p>
+<p>{{this.$store.state.msg}}</p>
+
+// getters == computed
+state {
+  myNum: 10
+},
+getters{
+  getNum(state){
+    return state.myNum
+  },
+}
+
+// use
+<p>{{this.$state.getter.getNum}}</p>
+```
+
 
 
 # 기본 구조 잡기

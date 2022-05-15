@@ -6,7 +6,7 @@
 export default {
   methods:{
     clearAll(){
-      this.$emit('clearAll');
+      this.$store.commit('clearAll');
     }
   }
 }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <app-header v-bind:propsdata="nums"></app-header>
+    <app-content @here="getData"></app-content>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  // 같은 레벨간 데이터를 전달할 때는 
+  // event를 발생시켜 하위 컴포넌트를 상위 컴포넌트로 올리고
+  // props를 써서 상위에서 하위로 받아야한다.
+
+  // 함수형태 & return 객체 형태로 써야한다.
+  const appHeader= {
+    template: '<h2> App Header</h2>',
+    props: ['propsdata'],
+  }
+  const appContent= {
+    template: '<button @click="sendData">send</button>',
+    data: () => {
+      return {
+        contentNum: 10,
+      }
+    },
+    methods: {
+      sendData(){
+      this.$emit('here', this.contentNum)
+      }
+      }
+  }
+
+  new Vue({
+    el: '#app',
+    components: {
+      appHeader,
+      appContent,
+    },
+    data:{
+      nums : 0,
+    },
+    methods: {
+      getData(value){
+        this.nums = value
+      },
+    }
+  })
+
+</script>
+</body>
+</html>

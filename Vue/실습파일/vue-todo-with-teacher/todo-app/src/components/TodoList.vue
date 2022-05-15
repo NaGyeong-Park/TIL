@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="(todo,idx) in tododata" :key="`todo-${idx}`">
+      <li v-for="(todo,idx) in this.$store.state.todos" :key="`todo-${idx}`">
         <span
           :class="{ completed : todo.completed }"
           @click="toggleTodo(idx)">
@@ -13,15 +13,15 @@
 
 <script>
 export default {
-  props: {
-    tododata: Array,
-  },
   methods: {
     deleteTodo(todo, idx){
-      this.$emit('deleteTodo', todo.item, idx)
+      this.$store.commit('deleteTodo', {
+        item :todo.item,
+        idx,
+      })
     },
     toggleTodo(idx){
-      this.$emit('toggleTodo',idx)
+      this.$store.commit('toggleTodo',idx)
     }
   },
 }

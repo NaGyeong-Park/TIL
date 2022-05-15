@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>{{num}}</h1>
+    <h3>x2 : {{doubleNum}}</h3>
+    <button @click="plus">+</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      num: 0,
+    },
+    methods: {
+      plus(){
+        this.num +=1
+      },
+    },
+    watch: { //computed : 값 변경 ~ 조금 가벼운거 / watch :변경 될 때마다 함수, 무거운 로직
+      num(newValue, oldValue){
+        console.log(newValue, oldValue);
+      }
+    },
+    computed: {
+      doubleNum(){
+        return this.num*2
+      }
+    }
+  })
+</script>
+</body>
+</html>

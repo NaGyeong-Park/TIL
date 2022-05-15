@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"> <!--Vue instance 안에있는 data나 computed를 뒤진다.-->
+    <div v-if="member=== 'july'">기다려주세요</div>
+    <div v-else-if="member === 'neo'">어서오세요</div>
+    <div v-else>환영합니다</div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el : '#app',
+      data: {
+        member: 'july',
+            },
+    })
+  </script> 
+</body>
+</html>

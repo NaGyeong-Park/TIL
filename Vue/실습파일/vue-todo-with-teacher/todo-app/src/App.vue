@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <todo-header></todo-header>
-    <todo-input @addTodo="addTodo"></todo-input>
-    <todo-list :tododata="todos" @deleteTodo="deleteTodo" @toggleTodo="toggleTodo"></todo-list>
-    <todo-footer @clearAll="clearAll"></todo-footer>
+    <todo-input></todo-input>
+    <todo-list></todo-list>
+    <todo-footer></todo-footer>
   </div>
 </template>
 
@@ -27,38 +27,7 @@ export default {
     TodoList,
   },
   methods: {
-    addTodo(item){
-      const todoObj = {
-          item,
-          completed: false,
-        }
-        localStorage.setItem(item, JSON.stringify(todoObj))
-        this.todos.push(todoObj)
-    },
-    deleteTodo(todoItem, idx) {
-      localStorage.removeItem(todoItem)
-      this.todos.splice(idx,1)
-
-    },
-    clearAll(){
-      localStorage.clear()
-      this.todos = []
-    },
-    toggleTodo(idx){
-      this.todos[idx].completed = !this.todos[idx].completed
-      localStorage.removeItem(this.todos[idx].item)
-      localStorage.setItem(this.todos[idx].item,
-       JSON.stringify(this.todos[idx]))
-    }
   },
-  created() {
-    if (localStorage.length > 0) {
-      for (var i = 0; i < localStorage.length; i++) {
-        const todoItem = localStorage.getItem(localStorage.key(i)) 
-        this.todos.push(JSON.parse(todoItem));
-      }
-    }
-  }
 }
 </script>
 

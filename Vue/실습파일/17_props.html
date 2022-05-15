@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- <my-header v-bind:props 속성명="상위 컴포넌트의 데이터"></my-header> -->
+    <my-header v-bind:propsdata='msg'></my-header>
+    <my-content v-bind:propsdata="number"></my-content>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const myContent = {
+    template: '<h3>{{propsdata}}</h3>',
+    props: ['propsdata'],
+  }
+  new Vue({
+    el: '#app',
+    data:{
+      msg : 'hello',
+      number: 100,
+    },
+    components: {
+      'my-header' : {
+        template : '<h1>my {{propsdata}}<h1>',
+        props: ['propsdata'] },
+      'my-content' : myContent
+    }
+  })
+</script>
+</body>
+</html>
