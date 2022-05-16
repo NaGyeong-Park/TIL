@@ -9,7 +9,7 @@ User = get_user_model()
 
 class CommentSerializer(serializers.ModelSerializer):
 
-    class UserSerializer(serializers.ModelSerial):
+    class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('pk', 'username')
 

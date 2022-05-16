@@ -38,16 +38,33 @@ INSTALLED_APPS = [
     # third party app
     'django_extensions',
     'rest_framework',
-    
+    'rest_framework.authtoken', # token 기반 auth
+
+    # DRF auth 담당
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+
+    # django allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # allauth 사용을 위해 필요
+    'corsheaders',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', # dj-rest-auth signup 필요하다
 ]
 
+SITE_ID = 1
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -133,3 +150,29 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+CORS_ALLOWED_ORIGINS = [
+    # Vue LocalHost
+    'http://localhost:8080',
+]
+# 모두에게 교차 출처 허용은
+CORS_ALLOWED_ALL_ORIGINS = True
+#     # Vue LocalHost
+#     'http://localhost:8080',
+#     'http://127.0.0.1:8001',
+# ]
+
+
+REST_FRAMEWORK = {
+    # 기본 인증방식 설정
+    'DEFAULT_AUTHENTICATION_CLASSES' : [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+
+    # 기본 권한 설정
+    'DEFAULT_PERMISSION_CLASSES' : [
+        # 'rest_framework.permissions.AllowAny' # 기본적 모두에게 허용
+        'rest_framework.permissions.IsAuthenticated', # 기본적으로 인증받아야 사용 가능
+    ],
+
+}
