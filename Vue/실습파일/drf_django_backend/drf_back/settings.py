@@ -31,6 +31,20 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # My app
+    'accounts',
+    'movies',
+
+    # add library
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+    'corsheaders',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +54,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -123,3 +139,21 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CORS 허용 범위
+CORS_ALLOW_ALL_ORIGINS = True
+
+# DRF 설정
+REST_FRAMEWORK = {
+
+    # 기본 인증을 TokenAuthentication을 사용하도록 설정
+    'DEFAULT_AUTHENTICATION_CLASSES':[
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+
+    # 인증받은 사용자만 요청하도록 설정하는 곳
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny', # 모두 허용
+        'rest_framework.permissions.IsAuthenticated', # 로그인 하면 허용
+    ],
+}
