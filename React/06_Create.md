@@ -1,3 +1,11 @@
+새로운 글을 작성하는 어플리케이션을 만들거다!
+
+
+
+실제 URL이 아닌, mode를 바꿔주어 create에 해당하는 UI가 나타나게 할거임!
+
+```js
+//App.js
 import './App.css';
 import {useState} from 'react';
 function Header(props) {
@@ -29,16 +37,6 @@ function Article(props) {
       <h2>{props.title}</h2>
       {props.body}
     </article>
-}
-function Create(){
-  return <article>
-    <h2>CREATE</h2>
-    <form>
-      <p><input type="text" name="title" placeholder="title"/></p>
-      <p><textarea name="body" placeholder="body"/></p>
-      <p><input type="submit" value="Create"></input></p>
-    </form>
-  </article>
 }
 function App() {
   const [mode,setMode] = useState('WELCOME');
@@ -82,3 +80,12 @@ function App() {
 }
 
 export default App;
+```
+
+{content} 밑에 A태그를 추가하여 CREATE를 만들어주었다.
+
+CREATE를 if문에 작성해도 되지만 꽤 복잡하기때문에 component로 따로 빼서 써주겠다.
+
+
+
+생성작업을 이용하고 있는 이요자가
