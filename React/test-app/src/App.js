@@ -30,10 +30,15 @@ function Article(props) {
       {props.body}
     </article>
 }
-function Create(){
+function Create(props){
   return <article>
     <h2>CREATE</h2>
-    <form>
+    <form onSubmit={event =>{
+      event.preventDefault();
+      const title = event.target.title.value;
+      const body = event.target.body.value;
+      props.onCreate(title, body);
+    }}>
       <p><input type="text" name="title" placeholder="title"/></p>
       <p><textarea name="body" placeholder="body"/></p>
       <p><input type="submit" value="Create"></input></p>
@@ -43,11 +48,12 @@ function Create(){
 function App() {
   const [mode,setMode] = useState('WELCOME');
   const [id,setId] = useState(null);
-  const topics = [
+  const [nextId, setNextId] = useState(4);
+  const [topics, setTopics] = useState([
     {id:1, title:'html', body:'html is ...'},
     {id:2, title:'css', body:'css is ...'},
     {id:3, title:'js', body:'js is ...'}
-  ]
+  ])
   let content = null;
   if(mode === 'WELCOME'){
     content =  <Article title="Welcome" body="Hello, WEB"></Article>
@@ -61,7 +67,17 @@ function App() {
     }
     content =  <Article title={title} body={body}></Article>
   } else if(mode === 'CREATE'){
-    content = <Create></Create>
+    content = <Create onCreate={(_title, _body)=>{
+      //topics에 추가해야겠다! => 일단 topics를 state로 승격해야겠다.
+      //앗 id관리 어떻게하지...? nextId State를 만들어야겠다
+    const newTopic = {id:nextId,title:_title, body:_body}
+    const newTopics = [...topics]
+    newTopics.push(newTopic);
+    setTopics(newTopics);
+    setMode('READ')
+    setId(nextId)
+    setNextId(nextId+1)
+    }}></Create>
   }
   return (
     <div className="App">
