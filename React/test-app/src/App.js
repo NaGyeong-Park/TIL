@@ -45,6 +45,28 @@ function Create(props){
     </form>
   </article>
 }
+function Update(props){
+  const [title, setTitle] = useState(props.title);
+  const [body, setBody] = useState(props.body);
+
+  return <article>
+  <h2>UPDATE</h2>
+  <form onSubmit={event =>{
+    event.preventDefault();
+    const title = event.target.title.value;
+    const body = event.target.body.value;
+    props.onUpdate(title, body);
+  }}>
+    <p><input type="text" name="title" placeholder="title" value={title} onChange={event=>{
+      setTitle(event.target.value);
+    }}/></p>
+    <p><textarea name="body" placeholder="body" value={body} onChange={event=>{
+      setBody(event.target.value);
+    }} /></p>
+    <p><input type="submit" value="Update"></input></p>
+  </form>
+</article>
+}
 function App() {
   const [mode,setMode] = useState('WELCOME');
   const [id,setId] = useState(null);
@@ -55,6 +77,7 @@ function App() {
     {id:3, title:'js', body:'js is ...'}
   ])
   let content = null;
+  let contextControl = null;
   if(mode === 'WELCOME'){
     content =  <Article title="Welcome" body="Hello, WEB"></Article>
   }else if(mode === 'READ'){
@@ -66,6 +89,10 @@ function App() {
       }
     }
     content =  <Article title={title} body={body}></Article>
+    contextControl = <li><a href={"/update/"+id} onClick={event => {
+      event.preventDefault();
+      setMode('UPDATE')
+    }}>Update</a></li>
   } else if(mode === 'CREATE'){
     content = <Create onCreate={(_title, _body)=>{
       //topics에 추가해야겠다! => 일단 topics를 state로 승격해야겠다.
@@ -78,6 +105,26 @@ function App() {
     setId(nextId)
     setNextId(nextId+1)
     }}></Create>
+  } else if(mode == 'UPDATE') {
+    let title, body = null;
+    for(let i = 0; i < topics.length; i++){
+      if(topics[i].id === id) {
+        title = topics[i].title;
+        body = topics[i].body;
+      }
+    }
+    content = <Update title={title} body={body} onUpdate={(title, body) =>{
+      const updatedTopic = {id: id, title: title, body: body}
+      const newTopic = [...topics]
+      for(let i = 0; i < topics.length; i++){
+        if(newTopic[i].id === id) {
+          newTopic[i] = updatedTopic
+          break;
+        }
+      }
+      setTopics(newTopic);
+      setMode('READ')
+    }}></Update>
   }
   return (
     <div className="App">
@@ -89,10 +136,13 @@ function App() {
         setId(_id);
       }}></Nav>
       {content}
-      <a href="/create" onClick={event =>{
-        event.preventDefault(); //URL이 안바뀌게 바꿨다!
-        setMode('CREATE') // Mode 값을 CREATE로 바꿔 App이 다시 실행
-      }}>Create</a>
+      <ul>
+        <li><a href="/create" onClick={event =>{
+          event.preventDefault(); //URL이 안바뀌게 바꿨다!
+          setMode('CREATE') // Mode 값을 CREATE로 바꿔 App이 다시 실행
+        }}>Create</a></li>
+        {contextControl}
+      </ul>
     </div>
   );
 }
