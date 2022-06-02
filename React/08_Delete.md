@@ -1,3 +1,41 @@
+# Delete
+
+`<>` : 그냥 복수의 태그들을 묶는 용도로 실제로 html에서 까보면 안나온다!
+
+Delete는 update 밑에 버튼을 만들어서 
+
+현재 id값과 같지 않은 topics들을 newTopics들에 넣어 
+
+setTopics로 Topic의 상태를 newTopics로 바꾸어주었다. => 현재 id를 가진 Topic이 Delete
+
+그리고 setMode로 Welcome 페이지로 가게 만들었다.
+
+```js
+contextControl = <>
+    <li><a href={"/update/"+id} onClick={event => {
+      event.preventDefault();
+      setMode('UPDATE')
+    }}>Update</a></li>
+    <li><input type="button" value="Delete" onClick={()=>{
+      const newTopics = []
+      for(let i=0; i < topics.length; i++){
+        if(topics[i].id !== id) {
+          newTopics.push(topics[i])
+      }
+    }
+    setTopics(newTopics)
+    setMode('WELCOME')
+    }} /></li>
+    </>
+```
+
+
+
+
+
+# 프로젝트 완성본
+
+```js
 import './App.css';
 import {useState} from 'react';
 function Header(props) {
@@ -160,3 +198,5 @@ function App() {
 }
 
 export default App;
+```
+
