@@ -13,9 +13,11 @@
     "Hello, I'm a span"
   )
   const btn = React.createElement("button",{
-    onClick: () => console.log("im clicked")
+    onClick: () => console.log("im clicked"),
+    style: {backgroundColor: "tomato"}
   }, "Click me") 
   const container = React.createElement("div", null, [btn, h3])
+  // React elements을 root 안에서 보여줘~
   ReactDOM.render(container, root)
 </script>
 </html>
