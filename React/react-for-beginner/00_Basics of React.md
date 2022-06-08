@@ -38,3 +38,10 @@ const btn = React.createElement("button",{
 
 &nbsp;
 
+## JSX
+
+`React.createElement(.., ..., ...)` 를 대체할 것인데 이유는 개발자들에게 좀 더 편리한 도구를 사용하기 위해서이다.
+
+그 편리한 것은 JSX이다.
+
+JSX : JavaScript를 확장한 문법. React한 문법을 쓸 수 있는데, HTML에서 사용한 문법과 유사한 형태의 문법을 이용한다.
