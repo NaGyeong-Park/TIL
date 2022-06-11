@@ -9,12 +9,14 @@
   <script type="text/babel">
     //React를 어렵게 사용하는 버전 : 본질을 이해하기 위해서 해본다
     const root = document.getElementById("root");
-    const Title = (
-      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-        Hello, I'm a title
-      </h3>
-    );
-    const Button = (
+    function Title() {
+      return (
+        <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+          Hello, I'm a title
+        </h3>
+      );
+    }
+    const Button = () => (
       <button
         style={{ backgroundColor: "tomato" }}
         onClick={() => console.log("im clicked")}
@@ -30,8 +32,14 @@
     //   },
     //   "Click me"
     // );
-    const container = React.createElement("div", null, [Button, Title]);
+    const Container = () => (
+      <div>
+        <Title />
+        <Button />
+      </div>
+    );
+    // const container = React.createElement("div", null, [Button, Title]);
     // React elements을 root 안에서 보여줘~
-    ReactDOM.render(container, root);
+    ReactDOM.render(<Container />, root);
   </script>
 </html>
