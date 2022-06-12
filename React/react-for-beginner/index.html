@@ -7,39 +7,21 @@
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    //React를 어렵게 사용하는 버전 : 본질을 이해하기 위해서 해본다
     const root = document.getElementById("root");
-    function Title() {
-      return (
-        <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-          Hello, I'm a title
-        </h3>
-      );
+    let counter = 0;
+    function render() {
+      ReactDOM.render(<Container />, root);
     }
-    const Button = () => (
-      <button
-        style={{ backgroundColor: "tomato" }}
-        onClick={() => console.log("im clicked")}
-      >
-        Click me
-      </button>
-    );
-    // const btn = React.createElement(
-    //   "button",
-    //   {
-    //     onClick: () => console.log("im clicked"),
-    //     style: { backgroundColor: "tomato" },
-    //   },
-    //   "Click me"
-    // );
+    function countUp() {
+      counter++;
+      render();
+    }
     const Container = () => (
       <div>
-        <Title />
-        <Button />
+        <h3>Total clicks : {counter}</h3>
+        <button onClick={countUp}>Click me</button>
       </div>
     );
-    // const container = React.createElement("div", null, [Button, Title]);
-    // React elements을 root 안에서 보여줘~
-    ReactDOM.render(<Container />, root);
+    render();
   </script>
 </html>

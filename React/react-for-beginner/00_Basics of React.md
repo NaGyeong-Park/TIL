@@ -45,3 +45,43 @@ const btn = React.createElement("button",{
 그 편리한 것은 JSX이다.
 
 JSX : JavaScript를 확장한 문법. React한 문법을 쓸 수 있는데, HTML에서 사용한 문법과 유사한 형태의 문법을 이용한다.
+
+```js
+// JSX
+    const Button = (
+      <button
+        style={{ backgroundColor: "tomato" }}
+        onClick={() => console.log("im clicked")}
+      >
+        Click me
+      </button>
+    );
+// Basic React
+    const btn = React.createElement(
+      "button",
+      {
+        onClick: () => console.log("im clicked"),
+        style: { backgroundColor: "tomato" },
+      },
+      "Click me"
+    );
+```
+
+Babel이 JSX로 적은 코드를 브라우저가 이해할 수 있는 형태로 바꿔준다.
+
+즉 JSX => Basic React로 바꿔준다!
+
+
+
+Render해주려면, 일단 변수로 지정해줬던 Title과 Button을 함수로 만들어준다.
+
+```js
+const container = (
+    <div>
+	    <Title />
+    	<Button />
+    </div>
+    );
+```
+
+_주의 : 대문자가 아니면 HTML은 기본 tag라고 생각한다 내가 만든 컴포넌트는 대문자로 시작해야한다!_
