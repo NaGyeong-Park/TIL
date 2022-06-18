@@ -51,3 +51,26 @@ vanilla JS에서는 h3, button, body가 계속 업데이트 된다. 하지만 Re
 
 #### 이거 값 바꿀 때마다 render 해줘야 하는데요 ㅠㅠ.... => 그래서 요렇게 안써요~
 
+
+
+## setState part One
+
+```js
+const root = document.getElementById("root");
+function App() {
+    const data = React.useState(0);
+    const [counter, modifier] = data;
+    console.log(data);
+    return (
+        <div>
+        <h3>Total clicks : {counter}</h3>
+<button>Click me</button>
+</div>
+);
+}
+ReactDOM.render(<App />, root);
+</script>
+```
+
+위 내용들은 생활코딩에서 배웠으니 합쳐서 블로그에 올리도록 하겠다.
+
