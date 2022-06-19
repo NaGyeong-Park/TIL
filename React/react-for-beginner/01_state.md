@@ -59,7 +59,7 @@ vanilla JS에서는 h3, button, body가 계속 업데이트 된다. 하지만 Re
 const root = document.getElementById("root");
 function App() {
     const data = React.useState(0);
-    const [counter, modifier] = data;
+    const [counter, setCounter] = data;
     console.log(data);
     return (
         <div>
@@ -74,3 +74,10 @@ ReactDOM.render(<App />, root);
 
 위 내용들은 생활코딩에서 배웠으니 합쳐서 블로그에 올리도록 하겠다.
 
+
+
+## setState part Two
+
+React.useState 함수는 counter 같은 데이터를 숫자형 데이터로 건네줄거고, 데이터 값을 바꿀 함수도 줄 것이다. 그 함수를 이용해서 데이터 값을 변경할 때 컴포넌트도 동시에 리렌더링된다! 
+
+위 강의와 결과는 같다. 변수를 컴포넌트에 연결해 변수에 데이터를 담은 다음 해당 변수에 담긴 값을 바꾸는 것.
