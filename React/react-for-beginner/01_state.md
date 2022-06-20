@@ -81,3 +81,42 @@ ReactDOM.render(<App />, root);
 React.useState 함수는 counter 같은 데이터를 숫자형 데이터로 건네줄거고, 데이터 값을 바꿀 함수도 줄 것이다. 그 함수를 이용해서 데이터 값을 변경할 때 컴포넌트도 동시에 리렌더링된다! 
 
 위 강의와 결과는 같다. 변수를 컴포넌트에 연결해 변수에 데이터를 담은 다음 해당 변수에 담긴 값을 바꾸는 것.
+
+
+
+```js
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App() {
+      const data = React.useState(0);
+      const [counter, setCounter] = data;
+      const onClick = () => {
+        setCounter(counter + 1);
+      };
+      return (
+        <div>
+          <h3>Total clicks : {counter}</h3>
+          <button onClick={onClick}>Click me</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
+```
+
+
+
+## Recap
+
+데이터가 바뀔때마다 커포넌트를 리렌더링하고 UI를 업데이트한다! __UI만__
+
+modifier 함수를 사용해 state를 바꿀 때 컴포넌트 전체가 재생성되고 새로운 값을 가지고 재생성 될 것이다. 
