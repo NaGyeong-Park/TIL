@@ -391,3 +391,43 @@ flipped의 상태를 아니까 이걸 이용해서 할 수 있지 않을까? => 
 
 
 ## Final Practice and Recap
+
+자, 이제 SUPERConverter를 만들거다! 분<->시, K<->miles converter
+
+일단 App안에 이렇게 좀 뿌려놓고...
+
+```html
+<div>
+    <h1>Super Converter</h1>
+    <select>
+        <option value="">Minutes & Hours</option>
+        <option value="">Km & Miles</option>
+    </select>
+    <MinutesToHour />
+    <KmToMiles />
+</div>
+```
+
+select에서 무슨 index를 고르는 지에 따라서 뿌려주는 component를 다르게 해보자!
+
+```js
+    function App() {
+      const [index, setIndex] = React.useState("0");
+      const onSelect = (e) => {
+        setIndex(e.target.value);
+      };
+      return (
+        <div>
+          <h1>Super Converter</h1>
+          <select value={index} onChange={onSelect}>
+            <option value="0">Minutes & Hours</option>
+            <option value="1">Km & Miles</option>
+          </select>
+          {index === "0" ? <MinutesToHour /> : null}
+          {index === "1" ? <KmToMiles /> : null}
+        </div>
+      );
+    }
+```
+
+setIndex를 이용해서 index 값을 바꿔준다.
