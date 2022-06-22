@@ -266,3 +266,128 @@ input의 value에 연결시켜주는 이유는 input값을 외부에서도 바�
 </html>
 ```
 
+
+
+## State Practice Part 2
+
+```js
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App() {
+      const [minutes, setMinutes] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false);
+      const onChange = (e) => {
+        setMinutes(e.target.value);
+      };
+      const reset = () => {
+        setMinutes(0);
+      };
+      const onFlip = () => {
+        setFlipped((current) => !current);
+      };
+      return (
+        <div>
+          <h1>Super COnverter</h1>
+          <label htmlFor="minutes">Minutes</label>
+          <input
+            value={minutes}
+            placeholder="Minutes"
+            type="number"
+            id="minutes"
+            onChange={onChange}
+            disabled={flipped}
+          />
+          <h4>You want to convert {minutes}</h4>
+          <label htmlFor="hours">Hours</label>
+          <input
+            value={Math.round(minutes / 60)}
+            placeholder="Hours"
+            type="number"
+            id="hours"
+            onChange={onChange}
+            disabled={!flipped}
+          />
+          <button onClick={reset}>RESET</button>
+          <button onClick={onFlip}>Flipped</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
+```
+
+Hours는 아직 로직이 완성이 안되었기 때문에 변화하지 않는다. 어뜨카지...?
+
+flipped의 상태를 아니까 이걸 이용해서 할 수 있지 않을까? => 시간과 분 중에서 뭐가 활성화 되어있는지 알 수 있다.
+
+```js
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App() {
+      const [amount, setAmount] = React.useState(0);
+        // flip or not
+      const [flipped, setFlipped] = React.useState(false);
+      const onChange = (e) => {
+        setAmount(e.target.value);
+      };
+      const reset = () => {
+        setAmount(0);
+      };
+        // flip의 상태를 바꿔준다.
+      const onFlip = () => {
+        reset();
+        setFlipped((current) => !current);
+      };
+      return (
+        <div>
+          <h1>Super COnverter</h1>
+          <label htmlFor="minutes">Minutes</label>
+          // flip의 상태에 따라 input의 disable 상태를 바꿔준다.
+          <input
+            value={flipped ? amount * 60 : amount}
+            placeholder="Minutes"
+            type="number"
+            id="minutes"
+            onChange={onChange}
+            disabled={flipped}
+          />
+          <h4>You want to convert {amount}</h4>
+          <label htmlFor="hours">Hours</label>
+          <input
+            value={flipped ? amount : Math.round(amount / 60)}
+            placeholder="Hours"
+            type="number"
+            id="hours"
+            onChange={onChange}
+            disabled={!flipped}
+          />
+          <button onClick={reset}>RESET</button>
+          <button onClick={onFlip}>Flipped</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
+```
+
+
+
+## Final Practice and Recap
