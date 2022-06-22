@@ -431,3 +431,10 @@ select에서 무슨 index를 고르는 지에 따라서 뿌려주는 component�
 ```
 
 setIndex를 이용해서 index 값을 바꿔준다.
+
+
+
+#### State의 중요한 것
+
+- `React.useState`는 Array를 제공한다. : 첫번째 item은 Data, 두번째는 Modify funtion
+- Modify function을 이용하면 모든 컴포넌트들이 다시 렌더링된다.
