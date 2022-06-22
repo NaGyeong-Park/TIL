@@ -120,3 +120,149 @@ React.useState 함수는 counter 같은 데이터를 숫자형 데이터로 건�
 데이터가 바뀔때마다 커포넌트를 리렌더링하고 UI를 업데이트한다! __UI만__
 
 modifier 함수를 사용해 state를 바꿀 때 컴포넌트 전체가 재생성되고 새로운 값을 가지고 재생성 될 것이다. 
+
+
+
+## State Funtions
+
+위 예시와 같은 코드를 사용하면, 즉 이전 단계의 state를 이용해 현재 state를 바꾸려고 하면 결과가 예상과 다르게 나오는 버그가 일어날 수 있다. 
+
+state를 바꾸는 방법은 두가지!
+
+- 직접 값 입력하기 : 이전 state를 이용해서 현재 state를 바꿔주는 것
+  - `setCounter(counter + 1); `
+- 함수를 전달하기 : 함수형태 : 함수가 뭘 return하던지 이것이 새 state를 반환한다!
+  - `setCounter((current) => current+1)`
+  - React가 확실히 현재 값이라는 것을 보장하고 있어!
+  - 예상치 못한 업데이트가 어디선가 일어났어도 혼동을 주는 것을 방지
+
+
+
+
+
+## Inputs and State
+
+### It's HTML Way!
+
+```html
+ <div>
+    <h1>Super COnverter</h1>
+	<label for="minutes">Minutes</label>
+	<input placeholder="Minutes" type="number" id="minutes" />
+    <label for="hours">Hours</label>
+	<input placeholder="Hours" type="number" id="hours" />
+ </div>
+```
+
+React를 production가 아닌 development를 사용하면 for를 못쓴다고 나오는데, 이유는 JS가 선점한 용어이기 때문이다.
+
+JSX를 쓰고있으니까 `class`, `for`를 쓰면 안됑.... `className`, `htmlFor`이라고 써야해
+
+
+
+React JS에서는 input은 우리가 value를 통제할 수 없다. 근데 사용자가 input에 값을 입력할 때마다 값을 바꾸고 싶어
+
+```js
+const onChange = (e) => {
+    console.log(e);
+};
+```
+
+이벤트를 출력하니까 뭔가 이상하다...?
+
+![image-20220622154819557](01_state.assets/image-20220622154819557.png)
+
+왜냐면 React JS가 가짜 event를 발생시킨다. 왜냐면 얘네는 event를 최적화시키거덩! 찐 event는 native event에서 확인 가능하다. target에서 value를 확인 가능! `console.log(e.target.value)`를 하면 입력한 값을 확인 가능하다.
+
+```js
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App() {
+      const [minutes, setMinutes] = React.useState(0);
+      const onChange = (e) => {
+        setMinutes(e.target.value);
+      };
+      return (
+        <div>
+          <h1>Super COnverter</h1>
+          <label htmlFor="minutes">Minutes</label>
+          <input
+            value={minutes}
+            placeholder="Minutes"
+            type="number"
+            id="minutes"
+            onChange={onChange}
+          />
+          <h4>You want to convert {minutes}</h4>
+          <label htmlFor="hours">Hours</label>
+          <input placeholder="Hours" type="number" id="hours" />
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
+```
+
+input의 value에 연결시켜주는 이유는 input값을 외부에서도 바꿔주기 위해서다.
+
+
+
+## State Practice Part 1
+
+```js
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App() {
+      const [minutes, setMinutes] = React.useState(0);
+      const onChange = (e) => {
+        setMinutes(e.target.value);
+      };
+      function reset() {
+        setMinutes(0);
+      }
+      return (
+        <div>
+          <h1>Super COnverter</h1>
+          <label htmlFor="minutes">Minutes</label>
+          <input
+            value={minutes}
+            placeholder="Minutes"
+            type="number"
+            id="minutes"
+            onChange={onChange}
+          />
+          <h4>You want to convert {minutes}</h4>
+          <label htmlFor="hours">Hours</label>
+          <input
+            value={Math.round(minutes / 60)}
+            placeholder="Hours"
+            type="number"
+            id="hours"
+            disabled
+          />
+          <button onClick={reset}>RESET</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
+```
+

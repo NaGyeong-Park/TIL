@@ -9,15 +9,34 @@
   <script type="text/babel">
     const root = document.getElementById("root");
     function App() {
-      const data = React.useState(0);
-      const [counter, setCounter] = data;
-      const onClick = () => {
-        setCounter(counter + 1);
+      const [minutes, setMinutes] = React.useState(0);
+      const onChange = (e) => {
+        setMinutes(e.target.value);
       };
+      function reset() {
+        setMinutes(0);
+      }
       return (
         <div>
-          <h3>Total clicks : {counter}</h3>
-          <button onClick={onClick}>Click me</button>
+          <h1>Super COnverter</h1>
+          <label htmlFor="minutes">Minutes</label>
+          <input
+            value={minutes}
+            placeholder="Minutes"
+            type="number"
+            id="minutes"
+            onChange={onChange}
+          />
+          <h4>You want to convert {minutes}</h4>
+          <label htmlFor="hours">Hours</label>
+          <input
+            value={Math.round(minutes / 60)}
+            placeholder="Hours"
+            type="number"
+            id="hours"
+            disabled
+          />
+          <button onClick={reset}>RESET</button>
         </div>
       );
     }
