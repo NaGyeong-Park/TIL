@@ -245,7 +245,9 @@ const MemorizedBtn = React.memo(Btn);
 
 # Prop Types
 
-prop의 type을 지정해주지 않으면 협업할 때 틀리는 경우도 있을 수 있다. => React
+prop의 type을 지정해주지 않으면 협업할 때 틀리는 경우도 있을 수 있다. 근데 React는 경고창이나 에러창을 띄어주지 않는다, 왜냐? 유효한 코드니까! 인간들이 원하는 형식이 있는지 없는지 어떻게 알아. 그냥 오류는 안나 ~ 
+
+그래서 porpTypes를 써볼 것이다.
 
 `  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>`을 붙여넣어주고 이제 propTypes에 접근이 가능하다!
 
@@ -256,7 +258,7 @@ Btn.propTypes = {
 };
 ```
 
-이렇게 props의 type을 정해주면, prop에 다른 타입의 데이터를 입력했을 때 console창에 관련 에러가 뜨게된다. __실수 발견 가능__
+이렇게 props의 type을 정해주면 내가 저 props만 쓸 것이고, prop에 다른 타입의 데이터를 입력했을 때 console창에 관련 에러가 뜨게된다. __실수 발견 가능__
 
 근데 이경우에는 저 prop들을 안써줘도 상관없다. 만약 꼭 필요하다고 명시해주려면
 
