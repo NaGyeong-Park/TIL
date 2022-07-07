@@ -1,9 +1,5 @@
 {
-  "users": [
-    {
-      "id": "test_login",
-      "password": "1234",
-      "name": "july"
-    }
-  ]
+  "login": {
+    "accessToken": "dlkafjijeilfjasilfj.ELjfijec.sfeef"
+  }
 }
