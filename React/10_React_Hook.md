@@ -1,4 +1,4 @@
-![](10_React_Hook.assets/image.png)
+![](10_React_Hook.assets/image-16573441145023.png)
 
 이제 막 React를 배우기 시작한 나같은 아가 개발자들은 React Hook에 대해 많이 들어봤지만 정확히 무엇인지 모를 것이다. Hook은 공식문서에 한국어로 친절하게 서술되어있다. 오늘은 이를 정리하며 개념을 잡는 시간을 잡아보도록 하겠다 :)!
 
@@ -31,9 +31,38 @@ function Example() {
   - React가 확실히 현재 값이라는 것을 보장하고 있어!
   - 예상치 못한 업데이트가 어디선가 일어났어도 혼동을 주는 것을 방지
   
+  state 변수를 선언할 때 class를 사용하면 this.state를 이용해 사용했다.
+```react
+ class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
+```
+## state 변수 선언
+함수 component는 this를 가질 수 없어 this.state를 할당하거나 읽을 수 없다. 대신 `useState` Hook을 직접 component에 호출한다.
+```react
+import React, { useState } from 'react';
+
+function Example() {
+  // 새로운 state 변수를 선언하고, 이것을 count라 부르겠습니다.
+  const [count, setCount] = useState(0);
+```
+## state 가져오기
+class component는 `this.state.count`로 사용하지만 함수 component는 `count`로 사용이 가능하다.
+
+## state 갱신하기
+클래스 컴포넌트는 count를 갱신하기 위해 this.setState()를 호출한다.
+
+반면 함수 컴포넌트는 setCount와 count 변수를 가지고 있으므로 this를 호출하지 않아도 된다.
+
+
+
 
 # 그래서 Hook이 뭐라구요?
-Hook은 Function component에서 React state와 생명주기(Lifecycle features)을 **연동(hook into)** 할 수 있게 해주는 **함수**이다.
+Hook은 Function component에서 React state와 생명주기(Lifecycle features)을 **연동(hook into)** 할 수 있게 해주는 **JavaScript 함수**이다.
 Hook은 class 안에서는 동작하지 않는다. 대신 함수형으로 React를 사용할 수 있게 해준다. 두 스타일을 비교하고 싶다면 [React class vs function style - 3.2. 함수에서 state 사용법 hook
  : 생활코딩](https://youtu.be/R6GPIWG7O9s)을 참고하면 된다. hook이 등장하면서 함수 스타일로 클래스 스타일의 기능성에 버금가는 component를 만들 수 있게되었다.
 
@@ -46,6 +75,8 @@ React component 안에서 Data를 가져오거나(get) 구독하고(subscribe), 
 ](https://ko.reactjs.org/docs/hooks-effect.html)
 
 Hook을 사용하면 구독을 추가하고 제거하는 로직과 같이 서로 관련있는 코드들을 한군데에 모아서 작성할 수 있다.
+
+
 
 ### Effect Hook 예시 : DOM 업데이트 후 문서의 타이틀을 바꾸는 component
 ```react
@@ -99,7 +130,142 @@ function FriendStatus(props) {
 ```
 위 예시에서 component가 unmount될 때 React가 `ChatAPI`에서 구독을 해지 할 것이다. 또한 리렌더링이 일어나 effect를 재실행하기 전에도 구독을 해지한다.
 
-# Hook
+React component는 일반적으로 두종류의 side effect가 있다. 정리가 필요한 것과 필요없는 것. 어떻게 구분할까?
+
+## 정리(clean-up)를 이용하지 않는 Effects
+**React가 DOM을 업데이트한 뒤 추가로 코드를 실행해야 하는 경우**.네트워크 request, DOM 수동 조작, Loging 등은 정리가 필요 없는 것들이다. 
+
+### class를 이용한 예시
+```react
+class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
+
+  componentDidMount() {
+    document.title = `You clicked ${this.state.count} times`;
+  }
+  componentDidUpdate() {
+    document.title = `You clicked ${this.state.count} times`;
+  }
+
+  render() {
+    return (
+      <div>
+        <p>You clicked {this.state.count} times</p>
+        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+          Click me
+        </button>
+      </div>
+    );
+  }
+}
+```
+class 안의 두 개의 생명주기 메서드에 같은 코드가 중복된다.
+개념적으로 렌더링 이후 항상 같은 코드가 수행되길 바래서 이렇게 작성한다. React class component는 렌더링 이후 항상 같은 코드가 되길 바라는 메서드가 없다.
+
+### Hook을 이용하는 예시
+```react
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+아까 본 코드다. `useEffect`를 이용해 React에게 component가 렌더링 된 이후에 어떤 일을 수행할 지 말해준다. React는 이 함수(effect)를 기억했다가 DOM 업데이트를 수행한 이후에 불러낼 것이다. 
+
+
+
+# Hook 사용 규칙
+두 가지 규칙을 준수해야 하는데,
+- 최상위에서만 Hook을 호출해야한다. 즉 반복문, 조건문, 중첩된 함수 내에서 Hook을 실행하면 안된다!
+- React함수 component 내에서만 Hook을 호출해야 한다. 일반 JS 함수에서는 Hook을 호출하면 안된다.(Hook은 custon Hook에서만 호출이 가능하다..!)
+
+# 나만의 Hook 만들기
+상태 관련 로직을 component 간에 재사용 하고싶을 때가 있을 것이다. 이를 해결하기 위해서 higher-order components와 render props가 있다. Custom Hook은 위 둘과 달리 component tree에 새 component를 추가하지 않고도 가능하게 해준다.
+
+Custom Hook은 기능이라기보단 convention에 가깝다. 이름이 `use`로 시작하고 안에서 다른 Hook을 호출하는 것은 Custom Hook이라고 부를 수 있다.
+폼 핸들링, 애니메이션, 선언적 구독(declarative subscriptions), 타이머 등 많은 경우에 custom Hook을 사용할 수 있다.
+
+
+```react
+import React, { useState, useEffect } from 'react';
+
+function useFriendStatus(friendID) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  function handleStatusChange(status) {
+    setIsOnline(status.isOnline);
+  }
+
+  useEffect(() => {
+    ChatAPI.subscribeToFriendStatus(friendID, handleStatusChange);
+    return () => {
+      ChatAPI.unsubscribeFromFriendStatus(friendID, handleStatusChange);
+    };
+  });
+
+  return isOnline;
+}
+```
+위와 같이 `useFriendStatus`라는 함수로 custom Hook을 뽑아낸다!
+이 Hook은 friendID를 argument로 받아서 친구의 접속상태를 반환해준다.
+이제 이 custom Hook을 여러 component에서 사용이 가능하다.
+```react
+function FriendStatus(props) {
+  const isOnline = useFriendStatus(props.friend.id);
+
+  if (isOnline === null) {
+    return 'Loading...';
+  }
+  return isOnline ? 'Online' : 'Offline';
+}
+```
+```react
+function FriendListItem(props) {
+  const isOnline = useFriendStatus(props.friend.id);
+
+  return (
+    <li style={{ color: isOnline ? 'green' : 'black' }}>
+      {props.friend.name}
+    </li>
+  );
+}
+```
+여기서 각 component의 state는 **완전히 독립적**이다! Hook은 state 그 자체가 아니라, **상태 관련 로직**을 재사용하는 방법이다. 실제로 각각 Hook 호출은 **완전히 독립된 state**를 가진다. 그래서 한 component 안에서 같은 custom Hook을 두 번 쓸 수도 있다.
+
+# 다른 Hook들
+- `useContext` : component를 중첩하지 않고도 React context를 구독할 수 있다.
+```react
+function Example() {
+  const locale = useContext(LocaleContext);
+  const theme = useContext(ThemeContext);
+  // ...
+}
+```
+- `useReducer` : 복잡한 components들의 state를 reducer로 관리하게 해준다.
+```react
+function Todos() {
+  const [todos, dispatch] = useReducer(todosReducer);
+  // ...
+```
+
 
 
 참고자료 : [React 공식 문서](https://ko.reactjs.org/docs/hooks-overview.html)
