@@ -13,9 +13,11 @@ const login = (id, pwd) => {
     .then((res) => {
       if (res.data.accessToken) {
         console.log("성공");
+        console.log(res.data);
         setJwtToken(res.data.accessToken);
         localStorage.setItem("isLogin", true);
         // localStorage.setItem("token", res.data.accessToken);
+        window.location.href = "/";
       }
     })
     .catch((e) => {

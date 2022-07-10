@@ -93,7 +93,6 @@ function Signup() {
         });
     }
   };
-  // login(inputId, inputPwd);
 
   if (loading)
     return (

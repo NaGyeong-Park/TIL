@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { login } from "../../utils/api";
+import Loader from "../../components/options/Loader";
 
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
@@ -14,7 +15,7 @@ import Grid from "@mui/material/Grid";
 function LoginForm() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const onSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -46,12 +47,15 @@ function LoginForm() {
       emailCheck.test(checkData.email) &&
       passwordCheck.test(checkData.password)
     ) {
+      setLoading(true);
       console.log("로그인 가능");
       login(checkData.email, checkData.password);
-      window.location.href = "/";
+      setLoading(false);
     }
   };
 
+  if (loading)
+    return <Loader type="spin" color="#ffffff" message={"로그인 중입니다."} />;
   return (
     <Container component="main" maxWidth="xs">
       <Box
