@@ -8,8 +8,9 @@ const io = new Server(server);
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
-
 io.on("connection", (socket) => {
+  playerMap.set(socket.id, new Player());
+  console.log(playerMap);
   console.log(socket.id);
   console.log("a user connected");
   socket.on("chat message", (msg) => {

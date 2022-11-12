@@ -8,6 +8,68 @@
   </head>
   <body>
     <canvas id="myCanvas"></canvas>
-    <script src="test.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const MAP_WIDTH = 1024;
+      const MAP_HEIGHT = 576;
+
+      const canvas = document.getElementById("myCanvas");
+      const c = canvas.getContext("2d");
+      const socket = io();
+      const playersMap = new Object();
+
+      socket.on("hi", (msg) => {
+        console.log(msg);
+      });
+      canvas.width = MAP_WIDTH;
+      canvas.height = MAP_HEIGHT;
+
+      c.fillRect(0, 0, MAP_WIDTH, MAP_HEIGHT);
+      const mapImg = new Image();
+      const playerImg = new Image();
+      mapImg.src = "./map.png";
+      playerImg.src = "./playerDown.png";
+      mapImg.onload = () => {
+        c.drawImage(mapImg, -MAP_WIDTH / 2, -MAP_HEIGHT / 2);
+        c.drawImage(
+          playerImg,
+          0,
+          0,
+          playerImg.width / 4,
+          playerImg.height,
+          canvas.width / 2 - playerImg.width / 4 / 2,
+          canvas.height / 2 - playerImg.height / 2,
+          playerImg.width / 4,
+          playerImg.height
+        );
+      };
+      window.addEventListener("keydown", (e) => {
+        switch (e.key) {
+          case "ArrowUp":
+            socket.emit("moveX", -3);
+          case "ArrowDown":
+            socket.emit("moveX", +3);
+          case "ArrowLeft":
+            socket.emit("moveY", -3);
+          case "ArrowRight":
+            socket.emit("moveY", +3);
+        }
+      });
+
+      socket.on("players", (players) => {
+        for (const player of players) {
+          if (!playerMap[player.id]) {
+            playerMap[player.id] = player;
+          }
+          playerMap[player.id].x = player.x;
+          playerMap[player.id].y = player.y;
+        }
+      });
+
+      socket.on("disconnect", (id) => {
+        console.log("playerDisconnected", id);
+        delete playersMap[id];
+      });
+    </script>
   </body>
 </html>
